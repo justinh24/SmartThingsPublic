@@ -61,7 +61,7 @@ metadata {
         }
         
         valueTile("installSmartApp","device.installSmartApp", decoration: "flat", width: 3, height: 1) {
-        	state "needSmartApp", label:'Please install SmartApp "Required PlantLink Connector"', defaultState:true
+        	state "needSmartApp", label:'Please install SmartApp "Required PlantLink Connector"'
             state "connectedToSmartApp", label:'Connected to myplantlink.com'
         }
 
