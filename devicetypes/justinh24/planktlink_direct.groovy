@@ -6,10 +6,11 @@
  *
  *	Author: Kristopher Kubicki, d8adrvn, OsoTech, SmartThings
  *	Date: 2015-06-18
+ *  Updated: Justin Hirsch
  */
 metadata {
 
-	definition (name: "PlantLink Direct Sensor", namespace: "justinh24", author: "kristopher@acm.org") {
+	definition (name: "PlantLink Direct Sensor", namespace: "justinh24", author: "jmhirsch@gmail.com") {
 		capability "Relative Humidity Measurement"
 		capability "Battery"
 		capability "Sensor"
