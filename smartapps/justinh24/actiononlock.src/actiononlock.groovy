@@ -25,26 +25,46 @@ definition(
 
 
 preferences {
-	section("Title") {
-		// TODO: put inputs here
-	}
+	page(name: "setupPage")
+}
+
+def setupPage() {
+	dynamicPage(name: "setupPage", title: "Setup", install: true, uninstall: true) {
+		section("Title") {
+			input "theLocks","capability.lockCodes", title: "Select Locks", required: true, multiple: true
+		}
+        section("") {
+    		def phrases = location.helloHome?.getPhrases()*.label
+			if (phrases) {
+		    	phrases.sort()
+        		input name: "homePhrases", type: "enum", title: "Home Mode Phrase", multiple: true,required: true, options: phrases, refreshAfterSelection: true, submitOnChange: true
+            }
+        }
+    }
 }
 
 def installed() {
 	log.debug "Installed with settings: ${settings}"
-
 	initialize()
 }
 
 def updated() {
 	log.debug "Updated with settings: ${settings}"
-
 	unsubscribe()
 	initialize()
 }
 
 def initialize() {
-	// TODO: subscribe to attributes, devices, locations, etc.
+	unsubscribe()
+	subscribe(theLocks, "lock", codeUsed)
+ 	log.debug "state: ${state}"
 }
 
-// TODO: implement event handlers
+def codeUsed(evt) {
+ 
+  if(evt.value == "locked") {
+	  if (homePhrases) {
+	      location.helloHome.execute(homePhrases)
+    	}
+   }
+}
