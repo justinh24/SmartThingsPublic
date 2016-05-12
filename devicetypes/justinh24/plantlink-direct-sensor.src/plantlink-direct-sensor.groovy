@@ -138,7 +138,7 @@ private calculateBattery(value) {
 	def min = 2300
 	def percent = (Integer.parseInt(value, 16) - min) / 10
    
-//   	log.debug "VOLTAGE: $percent"
+   	log.debug "VOLTAGE: $percent"
 	percent = Math.max(0.0, Math.min(percent, 100.0))
     if(percent < 5) {
     	sendEvent(name: "status", value: "Change Battery!")
@@ -152,7 +152,7 @@ private calculateBattery(value) {
 // Calculated by hand.  This was real hard
 private resistivityToPercent(resistivity) { 
 
-//log.debug "RESIST: $resistivity"
+log.debug "RESIST: $resistivity"
 
 	def percent = 0.00
     if(resistivity == 0) { 
@@ -181,7 +181,7 @@ private resistivityToPercent(resistivity) {
 // 
 private percentToWarn(percent) { 
 
-//	    log.debug "PERCENT: $percent"
+	    log.debug "PERCENT: $percent"
 	def moisturePercent = 0.00
     if(soilType == "Silty Clay") { 
             moisturePercent = (percent - 21.4) / (39.4 - 21.4)
