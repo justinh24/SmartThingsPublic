@@ -71,9 +71,10 @@ def enrollResponse() {
 
 
 def configure(){
+    String zigbeeEui = swapEndianHex(device.hub.zigbeeEui)
     log.debug "Config Called"
     def configCmds = [
-    "zcl global write 0x500 0x10 0xf0 {${device.zigbeeId}}", "delay 200",
+    "zcl global write 0x500 0x10 0xf0 {${zigbeeEui}}", "delay 200",
     "send 0x${device.deviceNetworkId} ${endpointId} 1", "delay 1500",
     "zdo bind 0x${device.deviceNetworkId} ${endpointId} 0x01 0x0501 {${device.zigbeeId}} {}", "delay 500",
     "zdo bind 0x${device.deviceNetworkId} ${endpointId} 1 1 {${device.zigbeeId}} {}"
